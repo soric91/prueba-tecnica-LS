@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_lettersoup
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env  
+    environment:
+      - POSTGRES_USER=${USERDB}
+      - POSTGRES_PASSWORD=${PASSWORDDB}
+      - POSTGRES_DB=${DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - networksls
+
+  fastapi:
+    build:
+      context: ./backend/letter_soup
+      dockerfile: Dockerfile
+    container_name: fastapi_lettersoup
+    ports:
+      - "8880:8880"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${USERDB}:${PASSWORDDB}@postgres/${DATABASE}
+    volumes:
+      - .:/app
+    networks:
+      - networksls
+volumes:
+  postgres_data:
+
+networks:
+  networksls:
+    driver: bridge
