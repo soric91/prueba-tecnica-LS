@@ -1,0 +1,58 @@
+Stack Tecnológico del Proyecto
+Backend
+
+Lenguaje/Framework:
+
+Python 3.9+
+
+FastAPI (REST API framework)
+
+Uvicorn (servidor ASGI)
+
+uv administrador de proyecto
+
+Librerías de python:
+"sqlalchemy"
+"pydantic"
+"fastapi"
+"uvicorn"
+"python-dotenv"
+"python-multipart"
+"pydantic-settings"
+"psycopg[binary]"
+"psycopg2-binary"
+"sqlalchemy-utils"
+
+
+Algoritmo de backtracking implementado en clase @dataclass
+
+swager de la rest-api en http://localhost:8880/docs
+
+
+Base de Datos
+Motor principal:
+
+PostgreSQL 16
+
+ORM/Herramientas:
+
+SQLAlchemy Core + ORM
+
+SQLAlchemy-Utils (para tipos de datos especiales)
+
+
+Frontend
+Core:
+React 19
+
+RSBuild (empaquetador)
+
+Librería	
+Axios	
+Tailwind CSS	
+
+
+Despliegue de los recursos
+
+docker 
+docker compose

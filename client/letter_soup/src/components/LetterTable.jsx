@@ -1,17 +1,17 @@
 import React from 'react';
 
-const LetterTable = ({ tabla, filas, columnas, handleChange, coordenadasResaltadas }) => {
+const LetterTable = ({ table, rows, columns, handleChange, highlightedCoordinates }) => {
   const generateEmptyTable = () => {
-    return Array.from({ length: filas }, () =>
-      Array.from({ length: columnas }, () => '')
+    return Array.from({ length: rows }, () =>
+      Array.from({ length: columns }, () => '')
     );
   };
 
-  const tableToDisplay = Array.isArray(tabla) && tabla.length > 0 ? tabla : generateEmptyTable();
+  const tableToDisplay = Array.isArray(table) && table.length > 0 ? table : generateEmptyTable();
 
   const getHighlightColor = (row, col) => {
     const key = `${row},${col}`;
-    return coordenadasResaltadas?.[key] || null;
+    return highlightedCoordinates?.[key] || null;
   };
 
   return (

@@ -15,10 +15,6 @@ dependencies = [
     "psycopg[binary]",
     "psycopg2-binary",
     "sqlalchemy-utils",
-  
-
-
-
 ]
 
 [project.scripts]

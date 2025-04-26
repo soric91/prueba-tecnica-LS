@@ -1,17 +1,13 @@
 import { useState } from 'react';
 
-
 export const useLetterSoup = () => {
-  const [soup, setSoup] = useState('');
+  const [grid, setGrid] = useState('');
   const [words, setWords] = useState('');
- 
 
-
-  const updateData = (newSoup, newWords) => {
-    setSoup(newSoup);
+  const updateData = (newGrid, newWords) => {
+    setGrid(newGrid);
     setWords(newWords);
   };
 
-
-  return { soup, words, updateData };
+  return { grid, words, updateData };
 };

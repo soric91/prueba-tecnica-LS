@@ -1,32 +1,29 @@
 import React, { useState } from 'react';
 
 const LetterSoupForm = ({ onSubmit }) => {
-  const [sopa, setSopa] = useState('');
-  const [palabras, setPalabras] = useState('');
+  const [grid, setGrid] = useState('');
+  const [words, setWords] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (sopa.trim() === '') {
-      alert('Por favor ingresa una sopa de letras.');
+    if (grid.trim() === '') {
+      alert('Please enter a letter grid.');
       return;
     }
-    // Pasamos los datos al componente padre
-    onSubmit(sopa, palabras);  
+    // Pass data to parent component
+    onSubmit(grid, words);  
 
-    setSopa('');
-    setPalabras('');
+    setGrid('');
+    setWords('');
   };
-
-
-
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <label className="font-semibold text-sm text-gray-300">
-        Enter your letter soup (one letter per cell, separated by commas or spaces):
+        Enter your letter grid (one letter per cell, separated by commas or spaces):
         <textarea
-          value={sopa}
-          onChange={(e) => setSopa(e.target.value)}
+          value={grid}
+          onChange={(e) => setGrid(e.target.value)}
           rows={7}
           className="w-full min-h-[350px] mt-5 p-2 border border-gray-600 rounded bg-gray-800 text-white font-mono text-sm resize-none"
           placeholder="N, D, E, K, I, C, A, N, G, U, R, O, G, E\nS, X, R, Y, ..."
@@ -36,12 +33,12 @@ const LetterSoupForm = ({ onSubmit }) => {
       <label className="font-semibold text-sm text-gray-300">
           Words to search for (one per line or separated by spaces):
           <textarea
-            value={palabras}
-            onChange={(e) => setPalabras(e.target.value)}
-            rows={5} // Aumenta el número de filas visibles
+            value={words}
+            onChange={(e) => setWords(e.target.value)}
+            rows={5}
             className="w-full min-h-[100px] mt-1 p-2 border border-gray-600 rounded bg-gray-800 text-white font-mono text-sm resize-none overflow-y-auto"
-            placeholder="MANATI&#10;PERRO&#10;GATO..."
-            style={{ whiteSpace: 'pre' }} // Conserva los saltos de línea exactos
+            placeholder="MANATEE&#10;DOG&#10;CAT..."
+            style={{ whiteSpace: 'pre' }}
           />
       </label>
 
