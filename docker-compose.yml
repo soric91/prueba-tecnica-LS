@@ -16,6 +16,7 @@ services:
       - networksls
 
   fastapi:
+
     build:
       context: ./backend/letter_soup
       dockerfile: Dockerfile
@@ -32,6 +33,24 @@ services:
       - .:/app
     networks:
       - networksls
+
+  frontend:
+    build:
+      context: ./client/letter_soup
+      dockerfile: Dockerfile
+    container_name: frontend_lettersoup
+    ports:
+      - "3000:3000"
+    environment:
+      - BROWSER=none
+    volumes:
+      - ./client/letter_soup:/app
+      - /app/node_modules
+   
+    networks:
+      - networksls
+    stdin_open: true
+    tty: true
 volumes:
   postgres_data:
 

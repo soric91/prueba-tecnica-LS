@@ -25,7 +25,7 @@ async def storage_lettersoup(
         session = get_session_db()
 
         matrix_input = matrix.matrix if isinstance(matrix, LetterSoupRequest) else matrix[keywords.MATRIX.value]
-        print(f"Matrix input: {matrix_input}")
+    
         matrix_is_valid = parse_matrix(matrix_input)
 
         if not matrix_is_valid:
@@ -51,8 +51,10 @@ async def storage_lettersoup(
     
 @router.post("/api/lettersoup/resolve", status_code=status.HTTP_200_OK, response_model=List[Union[LetterFoundResponse, LetterNotFoundResponse]])
 async def resolve_lettersoup(
-    id: int = Body(..., embed=True, description="ID of the letter soup to resolve", example=1),
-    words: Union[ WordsList, str] = Body(..., description="The list of words to find in the letter soup", example=["PERRO", "GATO", "TIBURON", "ELEFANTE"]),
+    wordslist: WordsList = Body(..., description="List of words to search in the letter soup", example={
+        "id": 1,
+        "words": ["ABCD", "EFGH", "IJKL", "MNOP"]
+    }),
 ):
     try:
 
@@ -60,9 +62,9 @@ async def resolve_lettersoup(
         
         session = get_session_db()
 
-        letter_soup = get_letter_soup(session, id)
+        letter_soup = get_letter_soup(session, wordslist.id)
 
-        list_word = convert_to_word_list(words) 
+        list_word = convert_to_word_list(wordslist.words) 
         
         if letter_soup is None:
             raise HTTPException(status_code=404, detail="Letter soup not found")

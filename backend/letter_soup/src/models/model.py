@@ -76,6 +76,7 @@ class LetterNotFoundResponse(BaseModel):
 
 
 class WordsList(BaseModel):
+    id: int
     words: List[str]
     
     
